@@ -1,0 +1,19 @@
+{
+  "name": "bullyngless",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Luiz Felipe da Silva",
+  "license": "ISC",
+  "devDependencies": {
+    "sequelize-cli": "^5.5.1"
+  },
+  "dependencies": {
+    "npx": "^10.2.2",
+    "pg": "^7.18.1",
+    "sequelize": "^5.21.3"
+  }
+}

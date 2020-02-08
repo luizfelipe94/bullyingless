@@ -7,6 +7,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   Tenant.associate = function(models) {
     // associations can be defined here
+    Tenant.hasMany(models.School);
   };
   return Tenant;
 };

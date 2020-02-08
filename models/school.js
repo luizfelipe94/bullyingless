@@ -6,7 +6,10 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   School.associate = function(models) {
     // associations can be defined here
-    School.belongsTo(models.Tenant);
+    School.belongsTo(models.Tenant, {foreignKey: 'tenantId'});
+    School.hasMany(models.User);
+    School.hasMany(models.Occurence);
+    School.hasOne(models.DefendentBlackList);
   };
   return School;
 };

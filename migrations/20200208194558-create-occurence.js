@@ -17,6 +17,13 @@ module.exports = {
       local: {
         type: Sequelize.STRING
       },
+      // denouementId: {
+      //   type: Sequelize.INTEGER,
+      //   references: {
+      //     model: 'Denouement',
+      //     key: 'id'
+      //   }
+      // },
       // schoolId: {
       //   type: Sequelize.INTEGER,
       //   references: {

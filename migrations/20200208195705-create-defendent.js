@@ -19,6 +19,7 @@ module.exports = {
       //   references: {
       //     model: 'DefendentBlackList',
       //     key: 'id'
+      //   }
       // },      
       createdAt: {
         allowNull: false,

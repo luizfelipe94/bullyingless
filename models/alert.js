@@ -2,11 +2,14 @@
 module.exports = (sequelize, DataTypes) => {
   const Alert = sequelize.define('Alert', {
     description: DataTypes.STRING,
-    risk: DataTypes.INTEGER
+    risk: DataTypes.INTEGER,
+    occurenceId: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    }
   }, {});
   Alert.associate = function(models) {
-    // associations can be defined here
-    Alert.belongsTo(models.Occurence);
+    Alert.belongsTo(models.Occurence, { foreignKey: 'occurenceId' });
   };
   return Alert;
 };

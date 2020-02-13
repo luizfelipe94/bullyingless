@@ -11,6 +11,16 @@ module.exports = {
       name: {
         type: Sequelize.STRING
       },
+      description: {
+        type: Sequelize.STRING
+      },
+      // schoolId: {
+      //   type: Sequelize.INTEGER,
+      //   references: {
+      //     model: 'School',
+      //     key: 'id'
+      //   }
+      // },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,

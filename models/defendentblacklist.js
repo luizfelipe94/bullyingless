@@ -1,11 +1,15 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   const DefendentBlackList = sequelize.define('DefendentBlackList', {
-    a: DataTypes.STRING
+    name: DataTypes.STRING,
+    description: DataTypes.STRING,
+    schoolId: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    }
   }, {});
   DefendentBlackList.associate = function(models) {
-    // associations can be defined here
-    DefendentBlackList.belongsTo(models.School);
+    DefendentBlackList.belongsTo(models.School, { foreignKey: 'schoolId' });
     DefendentBlackList.hasMany(models.Defendent);
   };
   return DefendentBlackList;

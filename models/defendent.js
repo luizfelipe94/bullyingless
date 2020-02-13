@@ -2,12 +2,15 @@
 module.exports = (sequelize, DataTypes) => {
   const Defendent = sequelize.define('Defendent', {
     name: DataTypes.STRING,
-    email: DataTypes.STRING
+    email: DataTypes.STRING,
+    defendentBlackListId: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    }
   }, {});
   Defendent.associate = function(models) {
-    // associations can be defined here
-    Defendent.belongsToMany(models.Denouement);
-    Defendent.belongsTo(models.DefendentBlackList);
+    Defendent.belongsToMany(models.Denouement, {through: 'denouement_defendent', foreignKey: 'defendentId' });
+    Defendent.belongsTo(models.DefendentBlackList, { foreignKey: 'defendentBlackListId' });
   };
   return Defendent;
 };

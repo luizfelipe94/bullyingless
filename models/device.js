@@ -3,12 +3,15 @@ module.exports = (sequelize, DataTypes) => {
   const Device = sequelize.define('Device', {
     OS: DataTypes.STRING,
     macaddress: DataTypes.STRING,
-    phoneNumber: DataTypes.STRING
+    phoneNumber: DataTypes.STRING,
+    userId: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    }
   }, {});
   Device.associate = function(models) {
-    // associations can be defined here
-    Device.belongsTo(models.User);
-    Device.hasMany(models.Occurence);
+    Device.belongsTo(models.User, { foreignKey: 'userId' });
+    Device.hasMany(models.Occurence, { foreignKey: 'occurenceId' } );
   };
   return Device;
 };

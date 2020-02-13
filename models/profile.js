@@ -1,11 +1,12 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   const Profile = sequelize.define('Profile', {
-    name: DataTypes.STRING,
+    name: {
+      type: Sequelize.ENUM('Administrator', 'Student')
+    },
     description: DataTypes.STRING
   }, {});
   Profile.associate = function(models) {
-    // associations can be defined here
     Profile.hasMany(models.User);
   };
   return Profile;

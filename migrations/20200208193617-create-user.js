@@ -20,13 +20,13 @@ module.exports = {
       password: {
         type: Sequelize.STRING
       },
-      // schoolId: {
-      //   type: Sequelize.INTEGER,
-      //   references: {
-      //     model: 'School',
-      //     key: 'id'
-      //   }
-      // },
+      schoolId: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'School',
+          key: 'id'
+        }
+      },
       // profileId: {
       //   type: Sequelize.INTEGER,
       //   references: {

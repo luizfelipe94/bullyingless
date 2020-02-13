@@ -5,7 +5,7 @@ module.exports = (sequelize, DataTypes) => {
     description: DataTypes.STRING
   }, {});
   Gravity.associate = function(models) {
-    // associations can be defined here
+    Gravity.hasMany(models.User);
   };
   return Gravity;
 };

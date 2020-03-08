@@ -17,13 +17,13 @@ module.exports = {
       phoneNumber: {
         type: Sequelize.STRING
       },
-      // userId: {
-      //   type: Sequelize.INTEGER,
-      //   references: {
-      //     model: 'User',
-      //     key: 'id'
-      //   }
-      // },
+      userId: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'User',
+          key: 'id'
+        }
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,

@@ -27,13 +27,13 @@ module.exports = {
           key: 'id'
         }
       },
-      // profileId: {
-      //   type: Sequelize.INTEGER,
-      //   references: {
-      //     model: 'Profile',
-      //     key: 'id'
-      //   }
-      // },
+      profileId: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'Profile',
+          key: 'id'
+        }
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,

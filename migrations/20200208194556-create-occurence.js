@@ -1,7 +1,7 @@
 'use strict';
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('Denouement', {
+    return queryInterface.createTable('Occurence', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -14,23 +14,23 @@ module.exports = {
       description: {
         type: Sequelize.STRING
       },
-      punishment: {
+      local: {
         type: Sequelize.STRING
       },
-      // occurenceId: {
-      //   type: Sequelize.INTEGER,
-      //   references: {
-      //     model: 'Occurence',
-      //     key: 'id'
-      //   }
-      // },
-      // gravityId: {
-      //   type: Sequelize.INTEGER,
-      //   references: {
-      //     model: 'Gravity',
-      //     key: 'id'
-      //   }
-      // },
+      schoolId: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'School',
+          key: 'id'
+        }
+      },
+      deviceId: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'Device',
+          key: 'id'
+        }
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,
@@ -44,6 +44,6 @@ module.exports = {
     });
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('Denouement');
+    return queryInterface.dropTable('Occurence');
   }
 };

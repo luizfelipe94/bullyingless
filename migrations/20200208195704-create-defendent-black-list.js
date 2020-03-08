@@ -1,7 +1,7 @@
 'use strict';
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('Occurence', {
+    return queryInterface.createTable('DefendentBlackList', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -14,30 +14,13 @@ module.exports = {
       description: {
         type: Sequelize.STRING
       },
-      local: {
-        type: Sequelize.STRING
+      schoolId: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'School',
+          key: 'id'
+        }
       },
-      // denouementId: {
-      //   type: Sequelize.INTEGER,
-      //   references: {
-      //     model: 'Denouement',
-      //     key: 'id'
-      //   }
-      // },
-      // schoolId: {
-      //   type: Sequelize.INTEGER,
-      //   references: {
-      //     model: 'School',
-      //     key: 'id'
-      //   }
-      // },
-      // deviceId: {
-      //   type: Sequelize.INTEGER,
-      //   references: {
-      //     model: 'Device',
-      //     key: 'id'
-      //   }
-      // },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,
@@ -51,6 +34,6 @@ module.exports = {
     });
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('Occurence');
+    return queryInterface.dropTable('DefendentBlackList');
   }
 };

@@ -14,13 +14,13 @@ module.exports = {
       risk: {
         type: Sequelize.INTEGER
       },
-      // occurenceId: {
-      //   type: Sequelize.INTEGER,
-      //   references: {
-      //     model: 'Occurence',
-      //     key: 'id'
-      //   }
-      // },
+      occurenceId: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'Occurence',
+          key: 'id'
+        }
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,

@@ -8,13 +8,13 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      // tenantId: {
-      //   type: Sequelize.INTEGER,
-      //   references: {
-      //     model: 'Tenant',
-      //     key: 'id'
-      //   }
-      // },
+      tenantId: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'Tenant',
+          key: 'id'
+        }
+      },
       name: {
         type: Sequelize.STRING,
         allowNull: false

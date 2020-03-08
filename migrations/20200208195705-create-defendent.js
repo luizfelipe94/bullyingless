@@ -14,13 +14,13 @@ module.exports = {
       email: {
         type: Sequelize.STRING
       },
-      // defendentBlackListId: {
-      //   type: Sequelize.INTEGER,
-      //   references: {
-      //     model: 'DefendentBlackList',
-      //     key: 'id'
-      //   }
-      // },      
+      defendentBlackListId: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'DefendentBlackList',
+          key: 'id'
+        }
+      },      
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,

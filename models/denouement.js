@@ -1,6 +1,12 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   const Denouement = sequelize.define('Denouement', {
+    id: { 
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      autoIncrement: true,
+      primaryKey: true,
+    },
     name: DataTypes.STRING,
     description: DataTypes.STRING,
     punishment: DataTypes.STRING,
@@ -16,7 +22,7 @@ module.exports = (sequelize, DataTypes) => {
   Denouement.associate = function(models) {
     Denouement.hasOne(models.Occurence, { foreignKey: 'occurenceId' });
     Denouement.hasOne(models.Gravity, { foreignKey: 'gravityId' });
-    Denouement.belongsToMany(moels.Defendent, {through: 'denouement_defendent', foreignKey: 'denouementId' });
+    Denouement.belongsToMany(models.Defendent, {through: 'denouement_defendent', foreignKey: 'denouementId' });
   };
   return Denouement;
 };

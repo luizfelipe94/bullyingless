@@ -1,6 +1,12 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   const Occurence = sequelize.define('Occurence', {
+    id: { 
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      autoIncrement: true,
+      primaryKey: true,
+    },
     name: DataTypes.STRING,
     description: DataTypes.STRING,
     local: DataTypes.STRING,

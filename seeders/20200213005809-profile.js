@@ -5,10 +5,12 @@ module.exports = {
     return queryInterface.bulkInsert('Profile', 
     [
       {
+        id: 1,
         name: 'Administrator',
         description: 'Administrador do sistema'
       },
       {
+        id: 2,
         name: 'Student',
         description: 'Estudante da escola'
       }
@@ -18,12 +20,6 @@ module.exports = {
   },
 
   down: (queryInterface, Sequelize) => {
-    /*
-      Add reverting commands here.
-      Return a promise to correctly handle asynchronicity.
-
-      Example:
-      return queryInterface.bulkDelete('People', null, {});
-    */
+    return queryInterface.bulkDelete('Profile');
   }
 };

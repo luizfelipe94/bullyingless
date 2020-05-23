@@ -1,8 +1,17 @@
 const controller = {};
 module.exports = controller;
 
+const userService = require("../services/user.service");
+
 controller.list = async (req, res) => {
-    return res.status(501).json('Method list not yet implemented.');
+    try{
+        const users = await userService.list();
+        return res.status(200).json(users);
+    }catch(e){
+        console.log(e);
+        return res.status(500).json({ msg: "Internal server error" });
+    }
+
 }
 
 controller.findById = async (req, res) => {

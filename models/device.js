@@ -1,6 +1,12 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   const Device = sequelize.define('Device', {
+    id: { 
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      autoIncrement: true,
+      primaryKey: true,
+    },
     OS: DataTypes.STRING,
     macaddress: DataTypes.STRING,
     phoneNumber: DataTypes.STRING,

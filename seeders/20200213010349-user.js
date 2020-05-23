@@ -4,6 +4,7 @@ module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.bulkInsert('User', [
       {
+        id: 1,
         name: 'teste1',
         username: 'teste1.silva',
         email: 'teste1@gmail.com',
@@ -11,6 +12,7 @@ module.exports = {
         profileId: 1
       },
       {
+        id: 2,
         name: 'teste2',
         username: 'teste2.silva',
         email: 'teste2@hotmail.com',
@@ -18,6 +20,7 @@ module.exports = {
         profileId: 1
       },
       {
+        id: 3,
         name: 'teste2',
         username: 'teste2.silva',
         email: 'teste2@gmail.com',
@@ -28,12 +31,6 @@ module.exports = {
   },
 
   down: (queryInterface, Sequelize) => {
-    /*
-      Add reverting commands here.
-      Return a promise to correctly handle asynchronicity.
-
-      Example:
-      return queryInterface.bulkDelete('People', null, {});
-    */
+    return queryInterface.bulkDelete('User');
   }
 };

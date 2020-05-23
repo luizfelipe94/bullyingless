@@ -31,6 +31,6 @@ require("./routes/login.route")(router);
 // private routes
 require("./routes/user.route")(router);
 
-app.listen(PORT, () => console.log(`Servidor rodando na porta ${PORT}`));
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
 
 module.exports = app;

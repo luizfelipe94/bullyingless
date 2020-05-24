@@ -8,7 +8,6 @@ module.exports = (sequelize, DataTypes) => {
       primaryKey: true,
     },
     name: DataTypes.STRING,
-    studantQty: DataTypes.INTEGER,
     tenantId: {
       type: DataTypes.INTEGER,
       allowNull: false
@@ -16,8 +15,9 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   School.associate = function(models) {
     School.belongsTo(models.Tenant, { foreignKey: 'tenantId' });
-    School.hasMany(models.Occurence);
-    School.hasMany(models.DefendentBlackList);
+    School.hasMany(models.Occurence, {as : 'Occurence', foreignKey : 'schoolId'});
+    School.hasMany(models.DefendentBlackList, {as : 'DefendentBlackList', foreignKey : 'schoolId'});
+    School.hasMany(models.User, {as : 'Users', foreignKey : 'schoolId'});
   };
   return School;
 };

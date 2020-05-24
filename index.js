@@ -30,6 +30,8 @@ require("./routes/login.route")(router);
 
 // private routes
 require("./routes/user.route")(router);
+require("./routes/tenant.route")(router);
+require("./routes/school.route")(router);
 
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
 

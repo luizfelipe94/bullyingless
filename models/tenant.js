@@ -9,10 +9,16 @@ module.exports = (sequelize, DataTypes) => {
     },
     name: DataTypes.STRING,
     description: DataTypes.STRING,
-    config: DataTypes.STRING
+    config: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      default: "{}",
+      get: function() {
+        return JSON.parse(this.getDataValue("config"));
+      }
+    }
   }, {});
   Tenant.associate = function(models) {
-    Tenant.hasMany(models.School);
   };
   return Tenant;
 };

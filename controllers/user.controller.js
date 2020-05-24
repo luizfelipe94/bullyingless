@@ -6,10 +6,11 @@ const userService = require("../services/user.service");
 controller.list = async (req, res) => {
     try{
         const users = await userService.list();
-        return res.status(200).json(users);
+        return res.status(200)
+        .json(users);
     }catch(e){
-        console.log(e);
-        return res.status(500).json({ msg: "Internal server error" });
+        return res.status(500)
+        .json({ msg: "Internal server error" });
     }
 
 }

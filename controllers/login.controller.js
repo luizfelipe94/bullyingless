@@ -6,14 +6,14 @@ const userService = require("../services/user.service");
 controller.login = async (req, res) => {
     try{
 
-        const { username, password }  = req.body;
+        const { username, password, schoolId }  = req.body;
 
-        if(!username || !password){
+        if(!username || !password, !schoolId){
             return res.status(400)
             .json({ msg: "Invalid username or password" });
         }
 
-        const token = await userService.login(username, password);
+        const token = await userService.login(schoolId, username, password);
 
         return res.status(200)
         .json({ token: `Bearer ${token}` });

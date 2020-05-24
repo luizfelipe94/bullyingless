@@ -6,59 +6,64 @@ const jwt = require("jsonwebtoken");
 const utils = require("../lib/utils");
 const userRepository = require("../repository/user.repository");
 
-UserService.list = async (page) => {
+UserService.list = async (user, page) => {
     
-    const users = await userRepository.list(page);
-
-    return users;
-
-};
-
-UserService.save = async (newUser, profileId, schoolId) => {
-
-    newUser.password = utils.hashPassword(newUser.password);
-    
-    const result = await userRepository.save(newUser, profileId, schoolId);
+    const result = await userRepository.list(user, page);
 
     return result;
 
 };
 
-UserService.getById = async (id) => {
+UserService.getById = async (user, id) => {
 
-    const user = await userRepository.getById(id);
+    const result = await userRepository.getById(user, id);
 
-    return user;
-
-};
-
-UserService.update = () => {
+    return result;
 
 };
 
-UserService.delete = () => {
+UserService.save = async (user, newUser) => {
+
+    // melhorar a validacao de novo usuario
+    if(!newUser.username || !newUser.name || !newUser.email || !newUser.password){
+        throw new Error("Invalid user attributes");
+    }
+
+    newUser.password = utils.hash(newUser.password);
+    
+    const result = await userRepository.save(user, newUser, newUser.profileId);
+
+    return result;
 
 };
 
-UserService.login = async (username, password) => {
+UserService.update = (user) => {
 
-    const user = await userRepository.getByUsername(username, ['password']);
+};
 
-    if(!user){
+UserService.delete = (user) => {
+
+};
+
+UserService.login = async (schoolId, username, password) => {
+
+    const result = await userRepository.getByUsername({ schoolId }, username, ['password']);
+
+    if(!result){
         throw new Error(`Username or password invalid`);
     }
 
-    if(!utils.compareHash(password, user.password)){
+    if(!utils.compareHash(password, result.password)){
         throw new Error(`Username or password invalid`);
     }
 
     const payload = {
-        id: user.id,
-        name: user.name,
-        email: user.email,
-        profileId: user.Profile.id,
-        schoolId: user.School.id,
-        tenantId: user.School.Tenant.id
+        id: result.id,
+        name: result.name,
+        email: result.email,
+        profileId: result.Profile.id,
+        schoolId: result.School.id,
+        tenantId: result.School.Tenant.id
     };
 
     return jwt.sign(payload, process.env.SECRET_TOKEN);

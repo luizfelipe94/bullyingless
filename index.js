@@ -32,9 +32,9 @@ require("./routes/login.route")(router);
 router.use(auth);
 
 // private routes
-require("./routes/user.route")(router);
 require("./routes/tenant.route")(router);
 require("./routes/school.route")(router);
+require("./routes/user.route")(router);
 
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
 

@@ -31,7 +31,13 @@ UserService.save = async (user, newUser) => {
 
     newUser.password = utils.hash(newUser.password);
     
-    const result = await userRepository.save(user, newUser, newUser.profileId);
+    const result = await userRepository.save(user, newUser, newUser.profileId)
+    .catch((err) => {
+        // criar um error handler pra validacoes do sequelize.
+        if(err.name === "SequelizeUniqueConstraintError"){
+            throw new Error(`Already exists user with username ${newUser.username}`);
+        }
+    });
 
     return result;
 

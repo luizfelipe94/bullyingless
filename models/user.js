@@ -1,16 +1,31 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
+
   const User = sequelize.define('User', {
-    id: { 
+    id: {
       type: DataTypes.INTEGER,
       allowNull: false,
       autoIncrement: true,
       primaryKey: true,
     },
-    name: DataTypes.STRING,
-    username: DataTypes.STRING,
-    email: DataTypes.STRING,
-    password: DataTypes.STRING,
+    name: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    username: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      unique: true
+    },
+    email: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      // unique: true
+    },
+    password: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
     profileId: {
       type: DataTypes.INTEGER,
       allowNull: true
@@ -19,10 +34,15 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER,
       allowNull: true
     }
-  }, {});
-  User.associate = function(models) {
+  }, 
+  {}
+  );
+
+  User.associate = function (models) {
     User.belongsTo(models.Profile, { foreignKey: 'profileId' });
     User.belongsTo(models.School, { foreignKey: 'schoolId' });
   };
+
   return User;
+
 };

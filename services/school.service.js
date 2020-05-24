@@ -10,3 +10,11 @@ SchoolService.list = async (user, page, pageSize) => {
     return result;
 
 }
+
+SchoolService.getByid = async (user, schoolId) => {
+
+    const result = await schoolRepository.getById(user, schoolId);
+
+    return result;
+
+}

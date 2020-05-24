@@ -42,8 +42,6 @@ SchoolService.list = async (page = 0, pageSize = 2) => {
             ['id', 'ASC']
         ],
         ...dbUtils.paginate({ page, pageSize })
-        // limit: pageSize,
-        // offset: page * pageSize
     });
     return schools;
 

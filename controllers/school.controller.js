@@ -8,7 +8,7 @@ controller.list = async (req, res) => {
 
         const page = req.query.page || 0;
 
-        const schools = await schoolService.list(page);
+        const schools = await schoolService.list(req.user, page);
 
         return res.status(200)
         .json(schools);

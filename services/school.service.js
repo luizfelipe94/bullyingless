@@ -1,6 +1,7 @@
 const SchoolService = {};
 module.exports = SchoolService;
 
+const dbUtils = require("../lib/dbUtils");
 const { School, Tenant, User, Sequelize, Profile } = require("../models");
 
 const Profiles = {
@@ -8,7 +9,8 @@ const Profiles = {
     ADMINISTRATOR: "Administrator"
 }
 
-SchoolService.list = async () => {
+SchoolService.list = async (page = 0, pageSize = 2) => {
+
     const schools = await  School.findAll({
         attributes: [
             'id', 'name', 'createdAt', 'updatedAt',
@@ -22,6 +24,7 @@ SchoolService.list = async () => {
             { 
                 model: User, 
                 required: false, 
+                duplicating : false,
                 as: 'Users', 
                 attributes: [],
                 include: {
@@ -37,7 +40,11 @@ SchoolService.list = async () => {
         group: ['School.id', 'Tenant.id'],
         order: [
             ['id', 'ASC']
-        ]
+        ],
+        ...dbUtils.paginate({ page, pageSize })
+        // limit: pageSize,
+        // offset: page * pageSize
     });
     return schools;
+
 }

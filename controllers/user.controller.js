@@ -6,7 +6,9 @@ const userService = require("../services/user.service");
 controller.list = async (req, res) => {
     try{
 
-        const result = await userService.list();
+        const page = req.query.page || 0;
+
+        const result = await userService.list(page);
 
         return res.status(200)
         .json(result);
@@ -50,8 +52,14 @@ controller.save = async (req, res) => {
         
         const toInsert = req.body.user;
         const profileId = req.body.profileId;
+        const schoolId = req.body.schoolId;
 
-        const result = await userService.save(toInsert, profileId);
+        if(!toInsert || !profileId || !schoolId){
+            return res.status(400)
+            .json({ msg: `Invalid body` });
+        }
+
+        const result = await userService.save(toInsert, profileId, schoolId);
 
         return res.status(200)
         .json(result);

@@ -21,6 +21,7 @@ module.exports = {
         type: Sequelize.STRING
       },
       schoolId: {
+        allowNull: false,
         type: Sequelize.INTEGER,
         references: {
           model: 'School',
@@ -28,6 +29,7 @@ module.exports = {
         }
       },
       profileId: {
+        allowNull: false,
         type: Sequelize.INTEGER,
         references: {
           model: 'Profile',

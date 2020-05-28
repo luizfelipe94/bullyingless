@@ -1,9 +1,11 @@
-const secret = process.env.SECRET_TOKEN;
-const jwt = require('jsonwebtoken');
+const secret: string = process.env.SECRET_TOKEN!;
+import jwt from "jsonwebtoken";
 
-module.exports = (req, res, next) => {
+import { Request, Response, NextFunction } from "express";
 
-    let token = req.headers['authorization'] || '';
+const Auth = (req: Request, res: Response, next: NextFunction) => {
+
+    let token: string = req.headers['authorization'] || '';
 
     if (token.startsWith('Bearer ')) {
         token = token.slice(7, token.length);
@@ -28,3 +30,5 @@ module.exports = (req, res, next) => {
         });
     }
 }
+
+export default Auth;

@@ -1,4 +1,4 @@
-{
+export const config = {
   "development": {
     "username": "root",
     "password": "root",

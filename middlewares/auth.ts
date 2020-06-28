@@ -12,23 +12,36 @@ const Auth = (req: Request, res: Response, next: NextFunction) => {
     }
 
     if (token) {
+
         jwt.verify(token, secret, (err, decoded) => {
+
             if (err) {
-                return res.status(401).json({
+
+                return res.status(401)
+                .json({
                     success: false,
                     message: 'Invalid auth token'
                 });
+
             } else {
+
                 req.user = decoded;
                 next();
+
             }
+
         });
+
     } else {
-        return res.status(401).json({
+
+        return res.status(401)
+        .json({
             success: false,
             message: 'It is necessary to pass the auth token'
         });
+
     }
+    
 }
 
 export default Auth;
